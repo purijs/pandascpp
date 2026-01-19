@@ -22,7 +22,7 @@ py::array_t<bool> contains_any(const py::array_t<py::object>& strings, const std
 
         for (const auto& pattern : patterns) {
 
-            if (text.find(pattern) != std::string::npos) {
+            if (memmem(text.data(), text.size(), pattern.data(), pattern.size()) != nullptr) {
                 found = true;
                 break;
             }
