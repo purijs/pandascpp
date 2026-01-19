@@ -17,7 +17,7 @@ py::array_t<bool> contains_any(const py::array_t<py::object>& strings, const std
     bool* data_ptr = result.mutable_data();
 
     for (int i=0; i<size; i++) {
-        std::string text = py::str(str_ptr[i]);
+        std::string_view text = py::cast<std::string_view>(py::str(str_ptr[i]));
         bool found = false;
 
         for (const auto& pattern : patterns) {
